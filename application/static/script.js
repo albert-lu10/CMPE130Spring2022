@@ -53,8 +53,9 @@ $(function() {
                             } else {
                                 // Update quantity, price, and total price if item is already in cart (adding the same item multiple times)
                                 itemInTable.quantity += 1;
-                                itemInTable.price = itemPrice * itemInTable.quantity;
+                                itemInTable.price = +itemPrice * +itemInTable.quantity;
                                 updateItem(itemInTable);
+
                             }
                             console.log(itemList);
                         });
@@ -95,7 +96,7 @@ function updateItem(item) {
     const currentItem = document.getElementById("table_id" + item.id);
     console.log(currentItem);
     currentItem.querySelector(".quantity").innerText = item.quantity.toString();
-    currentItem.querySelector(".price").innerText = (item.price).toString();
+    currentItem.querySelector(".price").innerText = (item.price.toFixed(2)).toString();
     updateTotalPrice();
 }
 
@@ -104,7 +105,7 @@ function updateTotalPrice() {
     for (let i = 0; i < itemList.length; i++) {
         price += itemList[i].price;
     }
-    document.getElementById("price").innerHTML = `Total: $${price}`;
+    document.getElementById("price").innerHTML = `Total: $${price.toFixed(2)}`;
     if (itemList.length == 0) {
         document.getElementById("cart").hidden = true;
     }
