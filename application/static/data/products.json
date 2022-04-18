@@ -1,0 +1,4 @@
+[{"id":1, "name":"Thai Tea", "description":"", "image":"./static/images/img1.jpeg", "price": 5.99}, 
+ {"id":2, "name":"Banana", "description":"", "image":"./static/images/img2.jpeg", "price": 1.99},
+ {"id":3, "name":"Shrimp", "description":"", "image":"./static/images/img3.jpeg", "price": 4.99}
+]

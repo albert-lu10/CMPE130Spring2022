@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+.top-content {
+    width: 80%;
+    margin: 5% auto;
+}
+
+.center-content {
+    width: 80%;
+    height: auto;
+    padding: 1rem;
+    margin: 5% auto;
+}
+
+.add-button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 1em;
+    display: inline-block;
+}
+
+.delete-button {
+    background-color:black;
+    color: white;
+    border: none;
+    display: inline-block;
+}
+
+.order-button {
+    background-color: white;
+    color: black;
+    border: 5px solid black;
+    padding: 20px 30px;
+    font-size: 35px;
+}
+
+#price {
+    color: red;
+    text-align: right;
+    margin-right: 3% 8%;
+}
