@@ -10,45 +10,35 @@ def index():
         data = json.load(file)
     return render_template("index.html", data=data)
 
-
-def partition(data, low, high):
+def partition(a, low, high):
     i = (low-1) 
-    item=data[high]
-    pivot = item["name"] 
-    
+    item=a[high]
+    pivot = item["name"]
     for j in range(low, high):
-        item2=data[j]
+        item2=a[j]
         
         if item2["name"] <= pivot:
             
             i = i+1
-            data[i], data[j] = data[j], data[i]
-            
-    data[i+1], data[high] = data[high], data[i+1]
+            a[i], a[j] = a[j], a[i]
+    a[i+1], a[high] = a[high], a[i+1]
     return (i+1)
-
-def quickSortbyName(data, low, high):
-    if len(data) == 1: 
-        return data
+def quickSort(a, low, high):
+    if len(a) == 1: 
+        return a
     if low < high:
-        
-        p = partition(data, low, high)
-        quickSortbyName(data, low, p-1)
-        quickSortbyName(data, p+1, high)
-
-
-
-
+    
+        p = partition(a, low, high)
+        quickSort(a, low, p-1)
+        quickSort(a, p+1, high)
+    return (a)
 
 @app.route('/sortbyprice', methods=['GET', 'POST'])
-def quickSortbyName():
-    
-    print("Sorting...")
+
+def sort_by_price():
     filename = os.path.join(app.static_folder, 'data', 'products.json')
     with open(filename) as file:
         data = json.load(file)
-    
-    sorted_data = quickSortbyName(data,0,len(data)-1)
-    
-  
-    return {"data": sorted_data}
+        
+    sorted_data = quickSort(data,0,len(data)-1)
+    return {'data': sorted_data}
