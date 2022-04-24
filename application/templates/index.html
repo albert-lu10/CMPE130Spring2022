@@ -10,19 +10,27 @@
         
         <script type="text/javascript">
             const allItems = {{ data|tojson|safe }};
-          </script>    
-        <script type="module" src="{{ url_for('static', filename = 'script.js') }}"></script>
-
+        </script>
+        <script src="{{ url_for('static', filename = 'script.js') }}"></script>
     </head>
 
     <body>
         <div class="top-content">
             <h2 class="text-center"> Store </h2>
-            <button id="sort-by-name"> Sort Items by Names </button>
-        </div>
-
-        <div class="top-content">
-            <button id="sort-by-price"> Sort Items by Prices </button>
+            <form onsubmit="return false;" method="post" name="myForm">
+                <label for="sorting">Choose sorting algorithm:</label>
+                <select name="sort" id="sort-types">
+                  <option value="0">Quicksort</option>
+                  <option value="1">Mergesort</option>
+                  <option value="2">Insertion sort</option>
+                  <option value="3">Heapsort</option>
+                </select>
+                <select name="sort-by" id="sort-by">
+                    <option value="0">Name</option>
+                    <option value="1">Price</option>
+                  </select>
+                <input type="submit" value="Submit" onclick="sort_data();">
+              </form>
         </div>
 
           
