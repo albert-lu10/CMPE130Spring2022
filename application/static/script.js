@@ -1,140 +1,91 @@
 var itemList = [];
 
-$(function() {
-    // Call Python code to sort when clicked
-    $('#sort-by-name').on('click', function(e) {
-        e.preventDefault()
-        $.ajax({
-            url:"/sortbyname",
-            type:"POST",
-            dataType: 'json',
-            success: function(response){
-                // Sorted list is returned from the Python code
-                console.log(response);
-                document.getElementById("display-items").innerHTML = "";
-                // Loop through sorted list to display items
-                response['data'].forEach(function(item) {
-                    document.getElementById("display-items").innerHTML += 
-                    `
-                        <div class="card mb-3" style="max-width:100%;">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="${item.image}" class="card-img-top img-responsive" alt="${item.name}">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${item.name}</h5>
-                                        <p>${item.price}</p>
-                                        <button id="${item.id}" class="add-button"> Add </button>
-                                    </div>
+var sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort"]
+var sort_by_type_map = ["name", "price"]
+
+function sort_data() {
+
+    // Select type of sort
+    var sort_types_options = document.getElementById('sort-types');
+    var sort_type = sort_types_options.options[sort_types_options.selectedIndex].value;
+    console.log(sort_type)
+
+    // Select what to sort by
+    var sort_by_options = document.getElementById('sort-by');
+    var sort_by = sort_by_options.options[sort_by_options.selectedIndex].value;
+    console.log(sort_by)
+
+    // Call Python code in the backend
+    $.ajax({
+        url: "/" + sort_map[sort_type] + "by" + sort_by_type_map[sort_by],
+        type: "POST",
+        dataType: 'json',
+        success: function(response){
+            // Sorted list is returned from the Python code
+            console.log(response);
+            document.getElementById("display-items").innerHTML = "";
+            // Loop through sorted list to display items
+            response['data'].forEach(function(item) {
+                document.getElementById("display-items").innerHTML += 
+                `
+                    <div class="card mb-3" style="max-width:100%;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="${item.image}" class="card-img-top img-responsive" alt="${item.name}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item.name}</h5>
+                                    <p>${item.price}</p>
+                                    <button id="${item.id}" class="add-button"> Add </button>
                                 </div>
                             </div>
                         </div>
-                    `;
-                });
-    
-                const buttonList = document.querySelectorAll('.add-button');
-
-                buttonList.forEach((button) => {
-                        button.addEventListener('click', () => {
-                            document.getElementById("cart").hidden = false;
-                            
-                            let itemId = parseInt(button.getAttribute("id"));
-                            let itemPrice = parseFloat(allItems[itemId - 1]['price']);
-                            let itemName = allItems[itemId - 1]['name'];
-
-                            let itemInTable = itemList.find(x => x.id === itemId);
-
-                            if (itemInTable == undefined) {
-                                // Add item to cart
-                                var item_t = {"id": itemId, "name": itemName, "quantity": 1, "price": itemPrice};
-                                itemList.push(item_t);
-                                addNewItem(item_t);
-                            } else {
-                                // Update quantity, price, and total price if item is already in cart (adding the same item multiple times)
-                                itemInTable.quantity += 1;
-                                itemInTable.price = +itemPrice * +itemInTable.quantity;
-                                updateItem(itemInTable);
-
-                            }
-                            console.log(itemList);
-                        });
-                    });
-                },
-                error: function(error) {
-                    console.log("error");
-                }
+                    </div>
+                `;
             });
-        return false;
-    })
+            
+            addButtonHandlers();
 
-    $('#sort-by-price').on('click', function(e) {
-        e.preventDefault()
-        $.ajax({
-            url:"/sortbyprice",
-            type:"POST",
-            dataType: 'json',
-            success: function(response){
-                // Sorted list is returned from the Python code
-                console.log(response);
-                document.getElementById("display-items").innerHTML = "";
-                // Loop through sorted list to display items
-                response['data'].forEach(function(item) {
-                    document.getElementById("display-items").innerHTML += 
-                    `
-                        <div class="card mb-3" style="max-width:100%;">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img src="${item.image}" class="card-img-top img-responsive" alt="${item.name}">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">${item.name}</h5>
-                                        <p>${item.price}</p>
-                                        <button id="${item.id}" class="add-button"> Add </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-    
-                const buttonList = document.querySelectorAll('.add-button');
+            },
+            error: function(error) {
+                console.log("Error!");
+            }
+        });
+    return false;
+}
 
-                buttonList.forEach((button) => {
-                        button.addEventListener('click', () => {
-                            document.getElementById("cart").hidden = false;
-                            
-                            let itemId = parseInt(button.getAttribute("id"));
-                            let itemPrice = parseFloat(allItems[itemId - 1]['price']);
-                            let itemName = allItems[itemId - 1]['name'];
+function addButtonHandlers() {
+    const buttonList = document.querySelectorAll('.add-button');
 
-                            let itemInTable = itemList.find(x => x.id === itemId);
+    buttonList.forEach((button) => {
+        button.addEventListener('click', () => {
+            document.getElementById("cart").hidden = false;
+            
+            let itemId = parseInt(button.getAttribute("id"));
+            let itemPrice = parseFloat(allItems[itemId - 1]['price']);
+            let itemName = allItems[itemId - 1]['name'];
 
-                            if (itemInTable == undefined) {
-                                // Add item to cart
-                                var item_t = {"id": itemId, "name": itemName, "quantity": 1, "price": itemPrice};
-                                itemList.push(item_t);
-                                addNewItem(item_t);
-                            } else {
-                                // Update quantity, price, and total price if item is already in cart (adding the same item multiple times)
-                                itemInTable.quantity += 1;
-                                itemInTable.price = +itemPrice * +itemInTable.quantity;
-                                updateItem(itemInTable);
+            let itemInTable = itemList.find(x => x.id === itemId);
 
-                            }
-                            console.log(itemList);
-                        });
-                    });
-                },
-                error: function(error) {
-                    console.log("error");
-                }
-            });
-        return false;
-    })
-});
+            if (itemInTable == undefined) {
+                // Add item to cart
+                var item_t = {"id": itemId, "name": itemName, "quantity": 1, "price": itemPrice};
+                itemList.push(item_t);
+                addNewItem(item_t);
+            } else {
+                // Update quantity, price, and total price if item is already in cart (adding the same item multiple times)
+                itemInTable.quantity += 1;
+                itemInTable.price = +itemPrice * +itemInTable.quantity;
+                updateItem(itemInTable);
 
+            }
+            console.log(itemList);
+        });
+    });
+}
+
+// Checkout Functions
 
 function addNewItem(item) {
     const newItem = document.createElement("tr");
