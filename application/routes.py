@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, session, json
+from flask import render_template, flash, redirect, session, json, request
 from application import app
 import os
 from application import sorting
@@ -63,84 +63,48 @@ def quickSortbyPrice(a, low, high):
         quickSortbyPrice(a, p+1, high)
     return (a)
 
-def mergeSort():
+def mergeSortbyName():
     print("Do Mergesort")
 
-def insertionSort():
+def mergeSortbyPrice():
+    print("Do Mergesort")
+
+def insertionSortbyName():
     print("Do Insertion Sort")
 
-@app.route('/quicksortbyname', methods=['GET', 'POST'])
-def quicksort_by_name():
-    global product_data
-    data = deepcopy(product_data)
-        
-    sorted_data = quickSortbyName(data,0,len(data)-1)
-    return {'data': sorted_data}
+def insertionSortbyPrice():
+    print("Do Insertion Sort")
 
-@app.route('/quicksortbyprice', methods=['GET', 'POST'])
-def quicksort_by_price():
-    global product_data
-    data = deepcopy(product_data)
-        
-    sorted_data = quickSortbyPrice(data,0,len(data)-1)
-    return {'data': sorted_data}
-
-@app.route('/mergesortbyname', methods=['GET', 'POST'])
-def mergesort_by_name():
+@app.route('/sort', methods=['GET', 'POST'])
+def sort():
     global product_data
     data = deepcopy(product_data)
 
-    print("Begin mergesort")
-    sorted_data = mergeSort()
+    sort_type = request.args.get('type')
+    sort_by = request.args.get('by')
+
+    sorted_data = []
+
+    if sort_type == "quicksort":
+        if sort_by == "name":
+            sorted_data = quickSortbyName(data,0,len(data)-1)
+        elif sort_by == "price":
+            sorted_data = quickSortbyPrice(data,0,len(data)-1)
+    elif sort_type == "mergesort":
+        if sort_by == "name":
+            sorted_data = mergeSortbyName(data, 'name')
+        elif sort_by == "price":
+            sorted_data = mergeSortbyPrice(data, 'price')
+    elif sort_type == "insertionsort":
+        if sort_by == "name":
+            sorted_data = insertionSortbyName(data, 'name')
+        elif sort_by == "price":
+            sorted_data = insertionSortbyPrice(data, 'price')
+    elif sort_type == "heapsort":
+        if sort_by == "name":
+            sorted_data = sorting.heapSort(data, 'name')
+        elif sort_by == "price":
+            sorted_data = sorting.heapSort(data, 'price')
+    
     return {'data': sorted_data}
-
-@app.route('/mergesortbyname', methods=['GET', 'POST'])
-def mergesort_by_price():
-    global product_data
-    data = deepcopy(product_data)
-
-    print("Begin mergesort")
-    sorted_data = mergeSort()
-    return {'data': sorted_data}
-
-@app.route('/insertionsortbyname', methods=['GET', 'POST'])
-def insertionsort_by_name():
-    global product_data
-    data = deepcopy(product_data)
-
-    print("Begin insertionsort")
-    sorted_data = insertionSort()
-
-    return {'data': sorted_data}
-
-@app.route('/insertionsortbyprice', methods=['GET', 'POST'])
-def insertionsort_by_price():
-    global product_data
-    data = deepcopy(product_data)
-
-    print("Begin insertionsort")
-    sorted_data = insertionSort()
-
-    return {'data': sorted_data}
-
-@app.route('/heapsortbyname', methods=['GET', 'POST'])
-def heapsort_by_name():
-    global product_data
-    data = deepcopy(product_data)
-
-    print("Begin HeapSort")
-
-    sorted_data = sorting.heapSort(data, 'name')
-
-    return {'data': sorted_data}
-
-@app.route('/heapsortbyprice', methods=['GET', 'POST'])
-def heapsort_by_price():
-    global product_data
-    data = deepcopy(product_data)
-
-    print("Begin HeapSort")
-
-    sorted_data = sorting.heapSort(data, 'price')
-
-    return {'data': sorted_data}
+    

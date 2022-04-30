@@ -12,6 +12,11 @@ html, body {
     margin: 0;
 }
 
+.paginationjs {
+    display: flex;
+    justify-content: center;
+}
+
 .top-content {
     width: 80%;
     margin: 5% auto;
