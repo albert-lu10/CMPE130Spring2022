@@ -3,6 +3,39 @@ var itemList = [];
 var sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort"]
 var sort_by_type_map = ["name", "price"]
 
+/*
+$(function() {
+    $('#pagination-container').pagination({
+        dataSource: [1, 2, 3, 4, 5, 6, 7, 8],
+        pageSize: 5,
+        callback: function(data, pagination) {
+            // template method of yourself
+            html = ''
+            data.forEach(function(item)
+            {
+                html += `
+                    <div class="card mb-3" style="max-width:100%;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="" class="card-img-top img-responsive" alt="${item}">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">${item}</h5>
+                                    <p>00000</p>
+                                    <button id="00000" class="add-button"> Add </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            });
+            $('#data-container').html(html);
+        }
+    });
+});
+*/
+
 function sort_data() {
 
     // Select type of sort
@@ -17,35 +50,43 @@ function sort_data() {
 
     // Call Python code in the backend
     $.ajax({
-        url: "/" + sort_map[sort_type] + "by" + sort_by_type_map[sort_by],
+        url: "/sort?type=" + sort_map[sort_type] + "&by=" + sort_by_type_map[sort_by],
         type: "POST",
         dataType: 'json',
         success: function(response){
             // Sorted list is returned from the Python code
             console.log(response);
-            document.getElementById("display-items").innerHTML = "";
-            // Loop through sorted list to display items
-            response['data'].forEach(function(item) {
-                document.getElementById("display-items").innerHTML += 
-                `
-                    <div class="card mb-3" style="max-width:100%;">
-                        <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img src="${item.image}" class="card-img-top img-responsive" alt="${item.name}">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">${item.name}</h5>
-                                    <p>${item.price}</p>
-                                    <button id="${item.id}" class="add-button"> Add </button>
+
+            $('#pagination-container').pagination({
+                dataSource: response['data'],
+                pageSize: 5,
+                callback: function(data, pagination) {
+                    // template method of yourself
+                    html = ''
+                    data.forEach(function(item)
+                    {
+                        html += `
+                            <div class="card mb-3">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4" style="height: 15em;">
+                                        <img src="${item.image}" style="width: auto; height: auto; max-height:100%; max-width:100%;" class="card-img-top img-responsive" alt="${item.name}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">${item.name}</h5>
+                                            <p>${item.price}</p>
+                                            <button id="${item.id}" class="add-button"> Add </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                `;
+                        `
+                    });
+                    $('#data-container').html(html);
+                    addButtonHandlers();
+                }
             });
             
-            addButtonHandlers();
 
             },
             error: function(error) {
