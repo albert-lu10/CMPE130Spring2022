@@ -47,19 +47,19 @@ def merge(arr, l, m, r):
         j += 1
         k += 1
 
-def mergeSortByName(arr, l, r):
+def mergeSortbyName(arr, l, r):
     if l < r:
         m = l+(r-l)//2
-        mergeSortByName(arr, l, m)
-        mergeSortByName(arr, m+1, r)
+        mergeSortbyName(arr, l, m)
+        mergeSortbyName(arr, m+1, r)
         merge(arr, l, m, r)
 
 
-def mergeSortByPrice(arr, l, r):
+def mergeSortbyPrice(arr, l, r):
     if l < r:
         m = l+(r-l)//2
-        mergeSortByPrice(arr, l, m)
-        mergeSortByPrice(arr, m+1, r)
+        mergeSortbyPrice(arr, l, m)
+        mergeSortbyPrice(arr, m+1, r)
         merge(arr, l, m, r)
 
 @app.route('/sortbyname', methods=['GET', 'POST'])
@@ -69,7 +69,7 @@ def sort_by_name():
     with open(filename) as file:
         data = json.load(file)
         
-    sorted_data = mergeSortByName(data,0,len(data)-1)
+    sorted_data = mergeSortbyName(data,0,len(data)-1)
     return {'data': sorted_data}
 
 @app.route('/sortbyprice', methods=['GET', 'POST'])
@@ -78,5 +78,5 @@ def sort_by_price():
     with open(filename) as file:
         data = json.load(file)
         
-    sorted_data = mergeSortByPrice(data,0,len(data)-1)
+    sorted_data = mergeSortbyPrice(data,0,len(data)-1)
     return {'data': sorted_data}
