@@ -18,5 +18,17 @@
  {"id":17, "name":"Pork", "image":"./static/images/img17.jpg", "price": 7.99},
  {"id":18, "name":"Chicken", "image":"./static/images/img18.jpg", "price": 13.99},
  {"id":19, "name":"Pear", "image":"./static/images/img19.jpg", "price": 3.99}, 
- {"id":20, "name":"Potato", "image":"./static/images/img20.jpg", "price": 0.99}
+ {"id":20, "name":"Potato", "image":"./static/images/img20.jpg", "price": 0.99},
+ {"id":21, "name":"Orange", "image":"./static/images/img21.jpg", "price": 1.14},
+ {"id":22, "name":"Papaya", "image":"./static/images/img22.jpg", "price": 1.30},
+ {"id":23, "name":"Black Plum", "image":"./static/images/img23.jpg", "price": 0.59},
+ {"id":24, "name":"Passion Fruit", "image":"./static/images/img24.jpg", "price": 19.26},
+ {"id":25, "name":"Star Apple", "image":"./static/images/img25.jpg", "price": 14.19},
+ {"id":26, "name":"Custard Apple", "image":"./static/images/img26.jpg", "price": 14.11},
+ {"id":27, "name":"Jackfruit", "image":"./static/images/img27.jpg", "price": 1.01},
+ {"id":28, "name":"Blackberry", "image":"./static/images/img28.jpg", "price": 6.46},
+ {"id":29, "name":"Red Chili Pepper", "image":"./static/images/img29.jpg", "price": 14.11},
+ {"id":30, "name":"White Onion", "image":"./static/images/img30.jpg", "price": 13.28},
+ {"id":31, "name":"Green Grape", "image":"./static/images/img31.jpg", "price": 3.99}
+
 ]
