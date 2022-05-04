@@ -58,6 +58,24 @@
  {"id":57, "name":"GoGo squeeZ Applesauce", "image":"./static/images/img57.png", "price": 11.69},
  {"id":58, "name":"Hidden Valley Original Ranch", "image":"./static/images/img58.png", "price": 1.89},
  {"id":59, "name":"Campbell's Condensed Tomato Soup", "image":"./static/images/img59.png", "price": 1.29},
- {"id":60, "name":"Progresso Vegetable Classics Minestrone Soup", "image":"./static/images/img60.png", "price": 1.99}
+ {"id":60, "name":"Progresso Vegetable Classics Minestrone Soup", "image":"./static/images/img60.png", "price": 1.99},
+ {"id":61, "name":"Cotton Candy Frosted Sugar Cookies", "image":"./static/images/img61.png", "price": 3.67},
+ {"id":62, "name":"Mermaid Mini Cupcakes", "image":"./static/images/img62.png", "price": 3.52},
+ {"id":63, "name":"Brownie Bites", "image":"./static/images/img63.png", "price": 3.47},
+ {"id":64, "name":"Madeleine Cookies and Brownie Duo", "image":"./static/images/img64.png", "price": 3.37},
+ {"id":65, "name":"White Frosted Sugar Cookies", "image":"./static/images/img65.png", "price": 3.36},
+ {"id":66, "name":"Spring Mini Frosted Cookies", "image":"./static/images/img66.png", "price": 3.34},
+ {"id":67, "name":"Easter Shortbread Cookies", "image":"./static/images/img67.png", "price": 3.44},
+ {"id":68, "name":"Easter Assortment Sugard Cookies", "image":"./static/images/img68.png", "price": 12.78},
+ {"id":69, "name":"Gift Box Sugar Cookie", "image":"./static/images/img69.png", "price": 12.78},
+ {"id":70, "name":"Butterfly Sugar Cookie", "image":"./static/images/img70.png", "price": 1.98}
+
+
+
+
+
+
+
+
 
 ]
