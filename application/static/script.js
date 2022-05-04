@@ -169,3 +169,9 @@ function updateTotalPrice() {
     }
 }
 
+function placeorder()
+{
+    alert ('Your order has been placed successfully!!!')
+    form.submit();
+    
+}

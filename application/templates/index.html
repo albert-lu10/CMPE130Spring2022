@@ -63,7 +63,10 @@
             </table>
             <h3 id="price"></h3>
             <div class="text-center">
-                <button id="order" type="submit" class="order-button"> Place Order </button>
+                <a href="{{ url_for('checkout') }}">
+                <button> Check Out </button>
+            </a>
+               
             </div>
         </div>
     </body>
