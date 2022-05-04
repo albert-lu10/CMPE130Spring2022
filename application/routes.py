@@ -154,7 +154,6 @@ def mergeSortbyPrice(arr, l, r):
         mergeSortbyPrice(arr, m+1, r)
         merge2(arr, l, m, r)
     return arr
-
     
 @app.route('/sortbyname', methods=['GET', 'POST'])
 
