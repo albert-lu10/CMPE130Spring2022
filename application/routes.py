@@ -4,6 +4,7 @@ from application import app
 import os
 from application import sorting
 from copy import deepcopy
+import time
 
 product_data = None
 @app.route('/checkout',methods=['GET','POST'])
@@ -66,23 +67,24 @@ def quickSortbyPrice(a, low, high):
         quickSortbyPrice(a, low, p-1)
         quickSortbyPrice(a, p+1, high)
     return (a)
-def merge1(arr, l, m, r):
-    n1=m-l+1
-    n2 = r-m
- 
+  
+def merge1(arr, l, m, r): 
+    n1 = m - l + 1
+    n2 = r - m
+
     L = [0] * (n1)
     R = [0] * (n2)
- 
+
     for i in range(0, n1):
         L[i] = arr[l + i]
- 
+    
     for j in range(0, n2):
         R[j] = arr[m + 1 + j]
- 
+
     i = 0     
     j = 0     
-    k = l 
-    
+    k = l     
+
     while i < n1 and j < n2:
         if L[i]["name"] <= R[j]["name"]:
             arr[k] = L[i]
@@ -96,8 +98,9 @@ def merge1(arr, l, m, r):
         arr[k] = L[i]
         i += 1
         k += 1
+ 
     while j < n2:
-        arr[k] = R[i]
+        arr[k] = R[j]
         j += 1
         k += 1
 
@@ -115,7 +118,7 @@ def merge2(arr, l, m, r):
  
     L = [0] * (n1)
     R = [0] * (n2)
- 
+
     for i in range(0, n1):
         L[i] = arr[l + i]
  
@@ -125,13 +128,13 @@ def merge2(arr, l, m, r):
     i = 0     
     j = 0     
     k = l     
- 
+
     while i < n1 and j < n2:
-        if L[i]["price"] <= R[i]["price"]:
-            arr[k] = L[i]["price"]
+        if L[i]["price"] <= R[j]["price"]:
+            arr[k] = L[i]
             i += 1
         else:
-            arr[k] = R[i]
+            arr[k] = R[j]
             j += 1
         k += 1
  
@@ -139,8 +142,9 @@ def merge2(arr, l, m, r):
         arr[k] = L[i]
         i += 1
         k += 1
+ 
     while j < n2:
-        arr[k] = R[i]
+        arr[k] = R[j]
         j += 1
         k += 1
 
@@ -178,28 +182,56 @@ def sort():
 
     sorted_data = []
 
+    start = 0
+    end = 0
+
     if sort_type == "quicksort":
         if sort_by == "name":
+            start = time.perf_counter_ns()
             sorted_data = quickSortbyName(data,0,len(data)-1)
+            end = time.perf_counter_ns()
         elif sort_by == "price":
+            start = time.perf_counter_ns()
             sorted_data = quickSortbyPrice(data,0,len(data)-1)
+            end = time.perf_counter_ns()
     elif sort_type == "mergesort":
         if sort_by == "name":
-            sorted_data = mergeSortbyName(data,0,len(data)-1)
-        elif sort_by == "price":
-            sorted_data = mergeSortbyPrice(data,0,len(data)-1)
+            start = time.perf_counter_ns()
             sorted_data = mergeSortbyName(data, 0, len(data) -1)
+            end = time.perf_counter_ns()
         elif sort_by == "price":
+            start = time.perf_counter_ns()
             sorted_data = mergeSortbyPrice(data, 0, len(data) - 1)
+            end = time.perf_counter_ns()
     elif sort_type == "insertionsort":
         if sort_by == "name":
+            start = time.perf_counter_ns()
             sorted_data = insertionSortbyName(data, 'name')
+            end = time.perf_counter_ns()
         elif sort_by == "price":
+            start = time.perf_counter_ns()
             sorted_data = insertionSortbyPrice(data, 'price')
+            end = time.perf_counter_ns()
     elif sort_type == "heapsort":
         if sort_by == "name":
+            start = time.perf_counter_ns()
             sorted_data = sorting.heapSort(data, 'name')
+            end = time.perf_counter_ns()
         elif sort_by == "price":
+            start = time.perf_counter_ns()
             sorted_data = sorting.heapSort(data, 'price')
+            end = time.perf_counter_ns()
+    elif sort_type == "radixsort":
+        if sort_by == "name":
+            start = time.perf_counter_ns()
+            sorted_data = sorting.radixSortString(data)
+            end = time.perf_counter_ns()
+        elif sort_by == "price":
+            start = time.perf_counter_ns()
+            sorted_data = sorting.radixSortPrice(data)
+            end = time.perf_counter_ns()
     
-    return {'data': sorted_data}
+    delta = (end - start)
+
+    return {'data': sorted_data, 'time': delta}
+    
