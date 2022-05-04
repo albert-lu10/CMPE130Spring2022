@@ -67,6 +67,95 @@ def quickSortbyPrice(a, low, high):
         quickSortbyPrice(a, p+1, high)
     return (a)
 
+def merge1(arr, l, m, r):
+    n1 = m - l + 1
+    n2 = r - m
+
+    L = [0] * (n1)
+    R = [0] * (n2)
+
+    for i in range(0, n1):
+        L[i] = arr[l + i]
+    
+    for j in range(0, n2):
+        R[j] = arr[m + 1 + j]
+
+    i = 0     
+    j = 0     
+    k = l     
+
+    while i < n1 and j < n2:
+        if L[i]["name"] <= R[j]["name"]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
+ 
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+ 
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
+
+def mergeSortbyName(arr, l, r):
+    if l < r:
+        m = l+(r-l)//2
+        mergeSortbyName(arr, l, m)
+        mergeSortbyName(arr, m+1, r)
+        merge1(arr, l, m, r)
+    return arr
+
+def merge2(arr, l, m, r):
+    n1 = m - l + 1
+    n2 = r - m
+
+    L = [0] * (n1)
+    R = [0] * (n2)
+
+    for i in range(0, n1):
+        L[i] = arr[l + i]
+    
+    for j in range(0, n2):
+        R[j] = arr[m + 1 + j]
+
+    i = 0     
+    j = 0     
+    k = l     
+
+    while i < n1 and j < n2:
+        if L[i]["price"] <= R[j]["price"]:
+            arr[k] = L[i]
+            i += 1
+        else:
+            arr[k] = R[j]
+            j += 1
+        k += 1
+ 
+    while i < n1:
+        arr[k] = L[i]
+        i += 1
+        k += 1
+ 
+    while j < n2:
+        arr[k] = R[j]
+        j += 1
+        k += 1
+
+def mergeSortbyPrice(arr, l, r):
+    if l < r:
+        m = l+(r-l)//2
+        mergeSortbyPrice(arr, l, m)
+        mergeSortbyPrice(arr, m+1, r)
+        merge2(arr, l, m, r)
+    return arr
+
+@app.route('/sortbyname', methods=['GET', 'POST'])
     
 def insertionSortbyName():
     print("Do Insertion Sort")
