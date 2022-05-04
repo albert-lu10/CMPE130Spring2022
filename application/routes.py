@@ -64,41 +64,37 @@ def quickSortbyPrice(a, low, high):
     return (a)
 
 def merge1(arr, l, m, r):
-    item1=arr[m-l+1]
-    n1=item1["name"]
-    item2=arr[r-m]
-    n2 = item2["name"]
+    n1=m-l+1
+    n2 = r-m
  
     L = [0] * (n1)
     R = [0] * (n2)
  
     for i in range(0, n1):
-        item3=L[i]
-        item3["name"] = arr[l + i]
+        L[i] = arr[l + i]
  
     for j in range(0, n2):
-        item4=R[j]
-        item4["name"] = arr[m + 1 + j]
+        R[j] = arr[m + 1 + j]
  
     i = 0     
     j = 0     
     k = l     
  
     while i < n1 and j < n2:
-        if item3["name"] <= item4["name"]:
-            arr[k] = item3["name"]
+        if L[i]["name"] <= R[j]["name"]:
+            arr[k] = L[i]
             i += 1
         else:
-            arr[k] = item4["name"]
+            arr[k] = R[j]
             j += 1
         k += 1
  
     while i < n1:
-        arr[k] = item3["name"]
+        arr[k] = L[i]
         i += 1
         k += 1
     while j < n2:
-        arr[k] = item4["name"]
+        arr[k] = R[i]
         j += 1
         k += 1
 
@@ -108,43 +104,40 @@ def mergeSortbyName(arr, l, r):
         mergeSortbyName(arr, l, m)
         mergeSortbyName(arr, m+1, r)
         merge1(arr, l, m, r)
+    return arr
 
 def merge2(arr, l, m, r):
-    item1=arr[m-l+1]
-    n1=item1["price"]
-    item2=arr[r-m]
-    n2 = item2["price"]
+    n1 = m-l+1
+    n2 = r-m
  
     L = [0] * (n1)
     R = [0] * (n2)
  
     for i in range(0, n1):
-        item3=L[i]
-        item3["price"] = arr[l + i]
+        L[i] = arr[l + i]
  
     for j in range(0, n2):
-        item4=R[j]
-        item4["price"] = arr[m + 1 + j]
+        R[j] = arr[m + 1 + j]
  
     i = 0     
     j = 0     
     k = l     
  
     while i < n1 and j < n2:
-        if item3["price"] <= item4["price"]:
-            arr[k] = item3["price"]
+        if L[i]["price"] <= R[i]["price"]:
+            arr[k] = L[i]["price"]
             i += 1
         else:
-            arr[k] = item4["price"]
+            arr[k] = R[i]
             j += 1
         k += 1
  
     while i < n1:
-        arr[k] = item3["price"]
+        arr[k] = L[i]
         i += 1
         k += 1
     while j < n2:
-        arr[k] = item4["price"]
+        arr[k] = R[i]
         j += 1
         k += 1
 
@@ -154,7 +147,8 @@ def mergeSortbyPrice(arr, l, r):
         mergeSortbyPrice(arr, l, m)
         mergeSortbyPrice(arr, m+1, r)
         merge2(arr, l, m, r)
-
+    return arr
+    
 @app.route('/sortbyname', methods=['GET', 'POST'])
 
 
