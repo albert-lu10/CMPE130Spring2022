@@ -67,8 +67,8 @@ def quickSortbyPrice(a, low, high):
         quickSortbyPrice(a, low, p-1)
         quickSortbyPrice(a, p+1, high)
     return (a)
-
-def merge1(arr, l, m, r):
+  
+def merge1(arr, l, m, r): 
     n1 = m - l + 1
     n2 = r - m
 
@@ -113,18 +113,18 @@ def mergeSortbyName(arr, l, r):
     return arr
 
 def merge2(arr, l, m, r):
-    n1 = m - l + 1
-    n2 = r - m
-
+    n1 = m-l+1
+    n2 = r-m
+ 
     L = [0] * (n1)
     R = [0] * (n2)
 
     for i in range(0, n1):
         L[i] = arr[l + i]
-    
+ 
     for j in range(0, n2):
         R[j] = arr[m + 1 + j]
-
+ 
     i = 0     
     j = 0     
     k = l     
@@ -155,14 +155,22 @@ def mergeSortbyPrice(arr, l, r):
         mergeSortbyPrice(arr, m+1, r)
         merge2(arr, l, m, r)
     return arr
-
-@app.route('/sortbyname', methods=['GET', 'POST'])
     
+@app.route('/sortbyname', methods=['GET', 'POST'])
+
+
+def mergeSortbyName():
+    print("Do Mergesort")
+
+def mergeSortbyPrice():
+    print("Do Mergesort")
+
 def insertionSortbyName():
     print("Do Insertion Sort")
 
 def insertionSortbyPrice():
     print("Do Insertion Sort")
+   
 
 @app.route('/sort', methods=['GET', 'POST'])
 def sort():
