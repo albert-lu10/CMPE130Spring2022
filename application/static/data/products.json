@@ -48,6 +48,16 @@
  {"id":47, "name":"M&M's Peanut Chocolate Candies", "image":"./static/images/img47.png", "price": 3.99},
  {"id":48, "name":"Mars Variety Full Size Chocolate Candy Bar", "image":"./static/images/img48.png", "price": 14.89},
  {"id":49, "name":"Ferrero Rocher Gift Box", "image":"./static/images/img49.png", "price": 7.49},
- {"id":50, "name":"Ferrero Raffaello Almond Coconut Candy", "image":"./static/images/img50.png", "price": 5.39}
- 
+ {"id":50, "name":"Ferrero Raffaello Almond Coconut Candy", "image":"./static/images/img50.png", "price": 5.39},
+ {"id":51, "name":"OREO Chocolate Sandwich Cookies", "image":"./static/images/img51.png", "price": 4.19},
+ {"id":52, "name":"Chips Ahoy! Original Chocolate Chip Cookies", "image":"./static/images/img52.png", "price": 3.39},
+ {"id":53, "name":"Tate's Bake Shop Chocolate Chip Cookies", "image":"./static/images/img53.png", "price": 5.42},
+ {"id":54, "name":"Cheez-It Original Baked Snack Crackers", "image":"./static/images/img54.png", "price": 5.89},
+ {"id":55, "name":"Pepperidge Farm Goldfish Cheddar", "image":"./static/images/img55.png", "price": 5.29},
+ {"id":56, "name":"Whisps Multipack Parmesan", "image":"./static/images/img56.png", "price": 6.59},
+ {"id":57, "name":"GoGo squeeZ Applesauce", "image":"./static/images/img57.png", "price": 11.69},
+ {"id":58, "name":"Hidden Valley Original Ranch", "image":"./static/images/img58.png", "price": 1.89},
+ {"id":59, "name":"Campbell's Condensed Tomato Soup", "image":"./static/images/img59.png", "price": 1.29},
+ {"id":60, "name":"Progresso Vegetable Classics Minestrone Soup", "image":"./static/images/img60.png", "price": 1.99}
+
 ]
