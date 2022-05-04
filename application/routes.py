@@ -152,54 +152,6 @@ def mergeSortbyPrice(arr, l, r):
         merge2(arr, l, m, r)
     return arr
     
-
-def merge2(arr, l, m, r):
-    item1=m-l+1
-    n1=item1["price"]
-    item2=r-m
-    n2 = item2["price"]
- 
-    L = [0] * (n1)
-    R = [0] * (n2)
- 
-    for i in range(0, n1):
-        item3=L[i]
-        item3["price"] = arr[l + i]
- 
-    for j in range(0, n2):
-        item4=R[j]
-        item4["price"] = arr[m + 1 + j]
- 
-    i = 0     
-    j = 0     
-    k = l     
- 
-    while i < n1 and j < n2:
-        if item3["price"] <= item4["price"]:
-            arr[k] = item3["price"]
-            i += 1
-        else:
-            arr[k] = item4["price"]
-            j += 1
-        k += 1
- 
-    while i < n1:
-        arr[k] = item3["price"]
-        i += 1
-        k += 1
-    while j < n2:
-        arr[k] = item4["price"]
-        j += 1
-        k += 1
-
-def mergeSortbyPrice(arr, l, r):
-    if l < r:
-        m = l+(r-l)//2
-        mergeSortbyPrice(arr, l, m)
-        mergeSortbyPrice(arr, m+1, r)
-        merge2(arr, l, m, r)
-    return arr
-    
 @app.route('/sortbyname', methods=['GET', 'POST'])
 
 
