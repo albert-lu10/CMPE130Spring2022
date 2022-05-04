@@ -1,40 +1,7 @@
 var itemList = [];
 
-var sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort"]
+var sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort", "radixsort"]
 var sort_by_type_map = ["name", "price"]
-
-/*
-$(function() {
-    $('#pagination-container').pagination({
-        dataSource: [1, 2, 3, 4, 5, 6, 7, 8],
-        pageSize: 5,
-        callback: function(data, pagination) {
-            // template method of yourself
-            html = ''
-            data.forEach(function(item)
-            {
-                html += `
-                    <div class="card mb-3" style="max-width:100%;">
-                        <div class="row no-gutters">
-                            <div class="col-md-4">
-                                <img src="" class="card-img-top img-responsive" alt="${item}">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">${item}</h5>
-                                    <p>00000</p>
-                                    <button id="00000" class="add-button"> Add </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `
-            });
-            $('#data-container').html(html);
-        }
-    });
-});
-*/
 
 function sort_data() {
 
@@ -56,7 +23,10 @@ function sort_data() {
         success: function(response){
             // Sorted list is returned from the Python code
             console.log(response);
-
+            
+            var e_time_h3 = document.getElementById('e_time');
+            e_time_h3.innerHTML = (response['time'] / 1000000.0) + " ms (" + response['time'] + " ns)";
+            
             $('#pagination-container').pagination({
                 dataSource: response['data'],
                 pageSize: 5,

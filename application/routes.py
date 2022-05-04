@@ -4,6 +4,7 @@ from application import app
 import os
 from application import sorting
 from copy import deepcopy
+import time
 
 product_data = None
 @app.route('/checkout',methods=['GET','POST'])
@@ -173,26 +174,56 @@ def sort():
 
     sorted_data = []
 
+    start = 0
+    end = 0
+
     if sort_type == "quicksort":
         if sort_by == "name":
+            start = time.perf_counter_ns()
             sorted_data = quickSortbyName(data,0,len(data)-1)
+            end = time.perf_counter_ns()
         elif sort_by == "price":
+            start = time.perf_counter_ns()
             sorted_data = quickSortbyPrice(data,0,len(data)-1)
+            end = time.perf_counter_ns()
     elif sort_type == "mergesort":
         if sort_by == "name":
+            start = time.perf_counter_ns()
             sorted_data = mergeSortbyName(data, 0, len(data) -1)
+            end = time.perf_counter_ns()
         elif sort_by == "price":
+            start = time.perf_counter_ns()
             sorted_data = mergeSortbyPrice(data, 0, len(data) - 1)
+            end = time.perf_counter_ns()
     elif sort_type == "insertionsort":
         if sort_by == "name":
+            start = time.perf_counter_ns()
             sorted_data = insertionSortbyName(data, 'name')
+            end = time.perf_counter_ns()
         elif sort_by == "price":
+            start = time.perf_counter_ns()
             sorted_data = insertionSortbyPrice(data, 'price')
+            end = time.perf_counter_ns()
     elif sort_type == "heapsort":
         if sort_by == "name":
+            start = time.perf_counter_ns()
             sorted_data = sorting.heapSort(data, 'name')
+            end = time.perf_counter_ns()
         elif sort_by == "price":
+            start = time.perf_counter_ns()
             sorted_data = sorting.heapSort(data, 'price')
+            end = time.perf_counter_ns()
+    elif sort_type == "radixsort":
+        if sort_by == "name":
+            start = time.perf_counter_ns()
+            sorted_data = sorting.radixSortString(data)
+            end = time.perf_counter_ns()
+        elif sort_by == "price":
+            start = time.perf_counter_ns()
+            sorted_data = sorting.radixSortPrice(data)
+            end = time.perf_counter_ns()
     
-    return {'data': sorted_data}
+    delta = (end - start)
+
+    return {'data': sorted_data, 'time': delta}
     
