@@ -78,5 +78,15 @@
  {"id":77, "name":"Kodiak Cakes Proteine Muffin Cup", "image":"./static/images/img77.png", "price": 1.98},
  {"id":78, "name":"Entenmann's Little Bites Chocolate Chip Muffins", "image":"./static/images/img78.png", "price": 3.77},
  {"id":79, "name":"Old El Paso Crunchy Taco Shells", "image":"./static/images/img79.png", "price": 1.76},
- {"id":80, "name":"Mission Taco Size Flour Tortillas", "image":"./static/images/img80.png", "price": 2.98}
+ {"id":80, "name":"Mission Taco Size Flour Tortillas", "image":"./static/images/img80.png", "price": 2.98},
+ {"id":81, "name":"Mini Cinnamon Rolls", "image":"./static/images/img81.png", "price": 3.34},
+ {"id":82, "name":"Glazed Apple Fritters", "image":"./static/images/img82.png", "price": 4.25},
+ {"id":83, "name":"Cinnamon Rolls with Cream Cheese Icing", "image":"./static/images/img83.png", "price": 4.28},
+ {"id":84, "name":"Assorted Mini Donuts", "image":"./static/images/img84.png", "price": 2.32},
+ {"id":85, "name":"Butter Croissants", "image":"./static/images/img85.png", "price": 3.44},
+ {"id":86, "name":"Mini Orange Cranberry Scones", "image":"./static/images/img86.png", "price": 3.92},
+ {"id":87, "name":"Delizza Belgian Frozen Mini Cream Puffs", "image":"./static/images/img87.png", "price": 5.42},
+ {"id":88, "name":"Bagel Bites Bagel Dogs", "image":"./static/images/img88.png", "price": 5.44},
+ {"id":89, "name":"Gorton's Frozen Breaded Minced Fish Sticks", "image":"./static/images/img89.png", "price": 5.79},
+ {"id":90, "name":"Frozen Beef & Cheese Mini Tacos", "image":"./static/images/img90.png", "price": 3.77}
 ]
