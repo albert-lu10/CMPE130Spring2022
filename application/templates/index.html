@@ -19,7 +19,7 @@
 
     <body>
         <div class="top-content">
-            <h2 class="text-center"> Store </h2>
+            <h2 class="text-center"> Grocery Store </h2>
             <form onsubmit="return false;" method="post" name="myForm">
                 <label for="sorting">Choose sorting algorithm:</label>
                 <select name="sort" id="sort-types">
@@ -38,18 +38,12 @@
               </form>
         </div>
 
-        <div class="top-content">
+        <div class="center-content">
             <div id="data-container" class="text-center"></div>
-            <div id="pagination-container" class="text-center"></div>
+            <div id="pagination-container" class="text-center" style="margin-top: 1%; margin-bottom: 1%;"></div>
         </div>
-          
-        <div class="center-content row text-center">
-            <div id="display-items">
-                <!-- This is where the list of items will show. Generated in python. -->
-            </div>
-        </div>
-    
-        <div class="center-content" id="cart" hidden>
+        
+        <div class="container" id="cart" hidden>
             <h3 class="text-center">Shopping Cart</h3>
             <table class="table table-hover">
                 <thead>
@@ -68,7 +62,7 @@
                 <a href="{{ url_for('checkout') }}">
                 <button> Check Out </button>
             </a>
-               
+            
             </div>
         </div>
     </body>

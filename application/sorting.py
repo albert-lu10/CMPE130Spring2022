@@ -48,11 +48,19 @@ def radixSortString(n):
     l = getMaximumString(n)
     numDigits = l
 
+    for i in range(len(n)):
+        length = len(n[i]['name'])
+        if length < numDigits:
+            n[i]['name'] = n[i]['name'].ljust(numDigits, '(')
+
     currentDigit = 0
     sorted = n
     while currentDigit < numDigits:
         sorted = bucketSortString(sorted, currentDigit)
         currentDigit += 1
+
+    for i in range(len(n)):
+        n[i]['name'] = n[i]['name'][0:n[i]['name'].find('(')]
 
     return sorted
 
