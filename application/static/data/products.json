@@ -38,5 +38,16 @@
  {"id":37, "name":"Honeydew Melon", "image":"./static/images/img37.jpg", "price": 4.63},
  {"id":38, "name":"Jumbo Artichoke", "image":"./static/images/img38.jpg", "price": 2.51},
  {"id":39, "name":"Red Bell Peeper", "image":"./static/images/img39.jpg", "price": 2.00},
- {"id":40, "name":"Green Cabbage", "image":"./static/images/img40.jpg", "price": 2.57}
+ {"id":40, "name":"Green Cabbage", "image":"./static/images/img40.jpg", "price": 2.57},
+ {"id":41, "name":"Hershey's Strawberry Kisses", "image":"./static/images/img41.png", "price": 3.79},
+ {"id":42, "name":"Hershey's Milk Chocolate Bar", "image":"./static/images/img42.png", "price": 5.49},
+ {"id":43, "name":"Lindt lindor Fudge Swirl Chocolate", "image":"./static/images/img43.png", "price": 4.89},
+ {"id":44, "name":"Orbit Spearmint", "image":"./static/images/img44.png", "price": 6.89},
+ {"id":45, "name":"Ice breakers Ice Cubes Gum", "image":"./static/images/img45.png", "price": 3.89},
+ {"id":46, "name":"Life Savers Wint Green Mint Candies", "image":"./static/images/img46.png", "price": 9.99},
+ {"id":47, "name":"M&M's Peanut Chocolate Candies", "image":"./static/images/img47.png", "price": 3.99},
+ {"id":48, "name":"Mars Variety Full Size Chocolate Candy Bar", "image":"./static/images/img48.png", "price": 14.89},
+ {"id":49, "name":"Ferrero Rocher Gift Box", "image":"./static/images/img49.png", "price": 7.49},
+ {"id":50, "name":"Ferrero Raffaello Almond Coconut Candy", "image":"./static/images/img50.png", "price": 5.39}
+ 
 ]
