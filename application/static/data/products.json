@@ -128,5 +128,15 @@
  {"id":127, "name":"Vanilla Ice Cream", "image":"./static/images/img127.png", "price": 5.99},
  {"id":128, "name":"Mint Cookies & Cream Ice Cream", "image":"./static/images/img128.png", "price": 2.78},
  {"id":129, "name":"Waffle Cones", "image":"./static/images/img129.png", "price": 1.99},
- {"id":130, "name":"Sugar Cones", "image":"./static/images/img130.png", "price": 1.99}
+ {"id":130, "name":"Sugar Cones", "image":"./static/images/img130.png", "price": 1.99},
+ {"id":131, "name":"Folgers Gourmet Supreme Medium Dark Roast Ground Coffee", "image":"./static/images/img131.png", "price": 10.69},
+ {"id":132, "name":"Classic Roast Medium Roast Ground Coffee", "image":"./static/images/img132.png", "price": 7.39},
+ {"id":133, "name":"100% Colombian Medium Roast Ground Coffee", "image":"./static/images/img133.png", "price": 7.23},
+ {"id":134, "name":"French Roast Medium-Dark Roast Ground Coffee", "image":"./static/images/img134.png", "price": 14.88},
+ {"id":135, "name":"Green Mountain Coffee", "image":"./static/images/img135.png", "price": },
+ {"id":136, "name":"The Original Donut Shop Regular Keurig K-Cup Coffee", "image":"./static/images/img136.png", "price": 13.34},
+ {"id":137, "name":"Starbucks Medium Roast K-Cup Coffee ", "image":"./static/images/img137.png", "price": 16.77},
+ {"id":138, "name":"Cafe Bustelo Espresso Dark Roast Coffee", "image":"./static/images/img138.png", "price": 13.99},
+ {"id":139, "name":"McCafe Irish Mocha Medium Roast Coffee", "image":"./static/images/img139.png", "price": 16.34},
+ {"id":140, "name":"VitaCup Slim Diet & Metabolism Medium Roast Coffee", "image":"./static/images/img140.png", "price": 19.88}
 ]
