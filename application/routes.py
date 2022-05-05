@@ -5,6 +5,11 @@ import os
 from application import sorting
 from copy import deepcopy
 import time
+import random
+
+import sys
+
+sys.setrecursionlimit(1000000)
 
 product_data = None
 @app.route('/checkout',methods=['GET','POST'])
@@ -155,14 +160,39 @@ def mergeSortbyPrice(arr, l, r):
         mergeSortbyPrice(arr, m+1, r)
         merge2(arr, l, m, r)
     return arr
-
-@app.route('/sortbyname', methods=['GET', 'POST'])
     
 def insertionSortbyName():
     print("Do Insertion Sort")
 
 def insertionSortbyPrice():
     print("Do Insertion Sort")
+
+@app.route("/reload", methods=['GET', 'POST'])
+def reload():
+    filename = os.path.join(app.static_folder, 'data', 'products.json')
+    global product_data
+    with open(filename) as file:
+        product_data = json.load(file)
+
+    non_duplicate_amount = len(product_data)    
+
+    display_amount = round(non_duplicate_amount * float(request.args.get('by')))
+    curr_id = non_duplicate_amount + 1
+
+    new_data = []
+    
+    for i in range(display_amount):
+        new_product = product_data[i % non_duplicate_amount].copy()
+        new_product['id'] = curr_id
+        curr_id += 1
+        new_data.append(new_product)
+
+    product_data = new_data
+    print(len(product_data))
+    random.shuffle(product_data)
+    print(product_data)
+
+    return {'data': product_data}
 
 @app.route('/sort', methods=['GET', 'POST'])
 def sort():

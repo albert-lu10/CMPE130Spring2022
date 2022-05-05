@@ -11,7 +11,7 @@
         <script type="text/javascript" src="{{ url_for('static', filename = 'libraries/pagination.js') }}"></script>
 
         <script type="text/javascript">
-            const allItems = {{ data|tojson|safe }};
+            var allItems = {{ data|tojson|safe }};
         </script>
         <script src="{{ url_for('static', filename = 'script.js') }}"></script>
         
@@ -20,6 +20,25 @@
     <body>
         <div class="top-content">
             <h2 class="text-center"> Grocery Store </h2>
+
+            <form onsubmit="return false;" method="post" name="myForm">
+                <label for="dataset-selection">Choose dataset:</label>
+                <select id="dataset_type">
+                    <option value="1">Default (1x)</option>
+                    <option value="0.25">0.25x</option>
+                    <option value="0.5">0.5x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                    <option value="4">4x</option>
+                    <option value="8">8x</option>
+                    <option value="10">10x</option>
+                    <option value="100">100x</option>
+                    <option value="1000">1000x</option>
+                    <option value="5000">5000x</option>
+                </select>
+                <input type="submit" value="Submit" onclick="reload();">
+              </form>
+
             <form onsubmit="return false;" method="post" name="myForm">
                 <label for="sorting">Choose sorting algorithm:</label>
                 <select name="sort" id="sort-types">
@@ -34,8 +53,16 @@
                     <option value="1">Price</option>
                   </select>
                 <input type="submit" value="Submit" onclick="sort_data();">
-                <h3 id="e_time"> </h3>
               </form>
+              <div class="card" style="margin-top: 1%; margin-bottom: 1%;">
+                <div class="card-header">
+                    Results
+                </div>
+                <div class="card-body">
+                    <h4 id="dataset_loaded"> </h4>
+                    <h4 id="e_time"> </h4>
+                </div>
+            </div>
         </div>
 
         <div class="center-content">
