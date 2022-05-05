@@ -113,10 +113,20 @@
  {"id":112, "name":"Mochi Oat Milk Frozen Dessert Chocolate", "image":"./static/images/img112.png", "price": 6.22},
  {"id":113, "name":"Ball Park Hamburger Buns", "image":"./static/images/img113.png", "price": 2.18},
  {"id":114, "name":"Hamburger Buns", "image":"./static/images/img114.png", "price": 0.89},
- {"id":115, "name":"Ball Park Hot Dog Buns", "image":"./static/images/img115.png", "price":2.19},
+ {"id":115, "name":"Ball Park Hot Dog Buns", "image":"./static/images/img115.png", "price": 2.19},
  {"id":116, "name":"Wonder White Hot Dog Buns", "image":"./static/images/img116.png", "price": 2.22},
  {"id":117, "name":"Thomas' Regular English Muffins", "image":"./static/images/img117.png", "price": 3.32},
  {"id":118, "name":"Oroweat Sourdough English Muffins", "image":"./static/images/img118.png", "price": 3.48},
  {"id":119, "name":"Mrs. Baird's Large Hamburger Buns", "image":"./static/images/img119.png", "price": 2.92},
- {"id":120, "name":"Dave's Killer Bread Organic Hamburger Buns", "image":"./static/images/img120.png", "price": 5.58}
+ {"id":120, "name":"Dave's Killer Bread Organic Hamburger Buns", "image":"./static/images/img120.png", "price": 5.58},
+ {"id":121, "name":"Vanilla Bean Ice Cream", "image":"./static/images/img121.png", "price": 2.29},
+ {"id":122, "name":"Monster Cookie Ice Cream", "image":"./static/images/img122.png", "price": 3.46},
+ {"id":123, "name":"Moose Tracks Ice Cream", "image":"./static/images/img123.png", "price": 3.99},
+ {"id":124, "name":"Java Chunk Ice Cream", "image":"./static/images/img124.png", "price": 3.98},
+ {"id":125, "name":"Neapolitan Ice Cream", "image":"./static/images/img125.png", "price": 6.01},
+ {"id":126, "name":"Cookies n' Cream Ice Cream", "image":"./static/images/img126.png", "price": 6.02},
+ {"id":127, "name":"Vanilla Ice Cream", "image":"./static/images/img127.png", "price": 5.99},
+ {"id":128, "name":"Mint Cookies & Cream Ice Cream", "image":"./static/images/img128.png", "price": 2.78},
+ {"id":129, "name":"Waffle Cones", "image":"./static/images/img129.png", "price": 1.99},
+ {"id":130, "name":"Sugar Cones", "image":"./static/images/img130.png", "price": 1.99}
 ]
