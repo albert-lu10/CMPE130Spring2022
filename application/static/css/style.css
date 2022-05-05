@@ -19,22 +19,24 @@ html, body {
 
 .top-content {
     width: 80%;
-    margin: 5% auto;
+    margin: 1% auto;
 }
 
 .center-content {
     width: 80%;
     height: auto;
     padding: 1rem;
-    margin: 5% auto;
+    margin: 1% auto;
 }
 
 .add-button {
-    background-color: green;
+    background-color: #009432;
     color: white;
     border: none;
     padding: 1em;
+    width: 100%;
     display: inline-block;
+    font-weight: bold;
 }
 
 .delete-button {
