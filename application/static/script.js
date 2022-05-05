@@ -3,6 +3,24 @@ var itemList = [];
 var sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort", "radixsort"]
 var sort_by_type_map = ["name", "price"]
 
+function generate_product_card(data, index)
+{
+    return `
+        <div class="col-md-4">
+            <div class="card h-100">
+                <img class="card-img-top" style="height: 10rem; object-fit: contain;" src="${data[index]['image']}" alt="Card image cap">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${data[index]['name']}</h5>
+                    <div class="card-text mt-auto">
+                        <h3>$${data[index]['price']}</h3>
+                        <button id="${data[index]['id']}" class="add-button"> Add </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 function sort_data() {
 
     // Select type of sort
@@ -29,29 +47,25 @@ function sort_data() {
             
             $('#pagination-container').pagination({
                 dataSource: response['data'],
-                pageSize: 5,
+                pageSize: 9,
                 callback: function(data, pagination) {
                     // template method of yourself
                     html = ''
-                    data.forEach(function(item)
+                    for(var i = 0; i < data.length; i = i + 3)
                     {
-                        html += `
-                            <div class="card mb-3">
-                                <div class="row no-gutters">
-                                    <div class="col-md-4" style="height: 15em;">
-                                        <img src="${item.image}" style="width: auto; height: auto; max-height:100%; max-width:100%;" class="card-img-top img-responsive" alt="${item.name}">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title">${item.name}</h5>
-                                            <p>${item.price}</p>
-                                            <button id="${item.id}" class="add-button"> Add </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                    });
+                        console.log(data);
+                        html += `<div class = "row mt-3">`
+                        html += generate_product_card(data, i);
+                        if(i + 1 < data.length) {
+                            console.log(data[i + 1]['image'])
+                            html += generate_product_card(data, i + 1);
+                        }
+                        if(i + 2 < data.length) {
+                            console.log(data[i + 2]['image'])
+                            html += generate_product_card(data, i + 2);
+                        }
+                        html += `</div>`;
+                    }
                     $('#data-container').html(html);
                     addButtonHandlers();
                 }
