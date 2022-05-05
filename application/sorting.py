@@ -21,10 +21,7 @@ def getMaximumString(n):
     return max
 
 def getPlaceString(n, digit):
-    if len(n) < digit:
-        return ord(n[0])
-    else: 
-        return ord(n[len(n) - 1 - digit])
+    return ord(n[len(n) - 1 - digit])
 
 def bucketSortString(n, currentDigit):
     # 150 is far past the ASCII maximum for last letter 'Z'
