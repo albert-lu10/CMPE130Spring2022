@@ -32,6 +32,8 @@ function clearResults() {
 
 }
 
+var loaded_dataset = false;
+
 function reload() {
 
     // Select type of sort
@@ -50,10 +52,14 @@ function reload() {
             console.log(response);
 
             var dataset_loaded_element = document.getElementById('dataset_loaded');
-            dataset_loaded_element.innerHTML = "Using Dataset: " + dataset_type + "x with: " + response['data'].length + " elements";
+            dataset_loaded_element.innerHTML = "Dataset: " + dataset_type + "x with: " + response['data'].length + " elements";
+            
+            document.getElementById('results_data').style.display = "block";
 
             allItems = response['data']
             console.log(allItems)
+
+            loaded_dataset = true;
 
             $('#pagination-container').pagination({
                 dataSource: response['data'],
@@ -88,6 +94,12 @@ function reload() {
 }
 
 function sort_data() {
+
+    if(!loaded_dataset)
+    {
+        alert("Load dataset first!");
+        return;
+    }
 
     // Select type of sort
     var sort_types_options = document.getElementById('sort-types');

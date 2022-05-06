@@ -48,6 +48,7 @@ def radixSortString(n):
     for i in range(len(n)):
         length = len(n[i]['name'])
         if length < numDigits:
+            # Add padding so that strings are same length (using radix sort from least signficant digit, so no variable length)
             n[i]['name'] = n[i]['name'].ljust(numDigits, '(')
 
     currentDigit = 0
@@ -56,6 +57,7 @@ def radixSortString(n):
         sorted = bucketSortString(sorted, currentDigit)
         currentDigit += 1
 
+    # Remove the padding set earlier
     for i in range(len(n)):
         n[i]['name'] = n[i]['name'][0:n[i]['name'].find('(')]
 
@@ -71,7 +73,7 @@ def getMaximumPrice(n):
     return max
 
 def getPlaceDigit(n, digit):
-    return int((n / (10 ** digit)) % 10)
+    return int((n / digit) % 10)
 
 def bucketSortPrice(n, currentDigit):
     count = [0 for i in range(10)]
@@ -104,7 +106,7 @@ def radixSortPrice(n):
     currentDigit = 0
     sorted = n
     while currentDigit < numDigits:
-        sorted = bucketSortPrice(sorted, currentDigit)
+        sorted = bucketSortPrice(sorted, 10 ** currentDigit)
         currentDigit += 1
 
     # Reconvert back to decimal values (actual price in dollars and cents)

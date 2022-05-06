@@ -33,7 +33,7 @@
  {"id":32, "name":"Red Grape", "image":"./static/images/img32.jpg", "price": 2.68},
  {"id":33, "name":"Watermelon", "image":"./static/images/img33.png", "price": 4.11},
  {"id":34, "name":"Broccoli", "image":"./static/images/img34.jpg", "price": 2.23},
- {"id":35, "name":"Avogado", "image":"./static/images/img35.png", "price": 2.07},
+ {"id":35, "name":"Avocado", "image":"./static/images/img35.png", "price": 2.07},
  {"id":36, "name":"Cucumber", "image":"./static/images/img36.jpg", "price": 0.98},
  {"id":37, "name":"Honeydew Melon", "image":"./static/images/img37.jpg", "price": 4.63},
  {"id":38, "name":"Jumbo Artichoke", "image":"./static/images/img38.jpg", "price": 2.51},

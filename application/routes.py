@@ -188,9 +188,7 @@ def reload():
         new_data.append(new_product)
 
     product_data = new_data
-    print(len(product_data))
     random.shuffle(product_data)
-    print(product_data)
 
     return {'data': product_data}
 
