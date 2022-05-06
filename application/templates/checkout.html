@@ -334,9 +334,12 @@
         <input type="text" name="city"> 
       </label>
       
-      <button class="popup" onclick="placeorder()"> Place Order
-        
-      </button>
+      <div class="text-center">
+        <a href="{{ url_for('confirm') }}">
+        <button> Check Out </button>
+    </a>
+    
+    </div>
       
     </form>
     

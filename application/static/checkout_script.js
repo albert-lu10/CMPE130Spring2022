@@ -17,7 +17,7 @@ function addNewItem(item) {
         <td scope='row'> <img src="${item.image}" style="width: auto; height: 5em;" alt="${item.name}"> </td>
         <td class="name" scope='row'>${item.name}</td>
         <td class="quantity" scope='row'>${item.quantity}</td>
-        <td class="price" scope='row'>${item.price}</td>
+        <td class="price" scope='row'>${item.price.toFixed(2)}</td>
         <td scope='row'> <button class="delete-button"> Delete </button> </td>
     `;
     document.querySelector("#cart table tbody").append(newItem);
@@ -53,9 +53,3 @@ function updateTotalPrice() {
     sessionStorage.setItem("cart", JSON.stringify(itemList));
 }
 
-function placeorder()
-{
-    alert ('Your order has been placed successfully!!!')
-    form.submit();
-    
-}

@@ -9,7 +9,13 @@ import random
 
 import sys
 
+
+
 sys.setrecursionlimit(1000000)
+
+@app.route('/confirm',methods=['GET','POST'])
+def confirm():
+    return render_template("confirm.html")
 
 product_data = None
 @app.route('/checkout',methods=['GET','POST'])
