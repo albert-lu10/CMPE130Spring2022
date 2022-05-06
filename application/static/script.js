@@ -191,7 +191,6 @@ function addButtonHandlers() {
 }
 
 // Checkout Functions
-
 function addNewItem(item) {
     const newItem = document.createElement("tr");
     newItem.setAttribute("id", "table_id" + item.id);
@@ -231,6 +230,7 @@ function updateTotalPrice() {
     if (itemList.length == 0) {
         document.getElementById("cart").hidden = true;
     }
+    sessionStorage.setItem("cart", JSON.stringify(itemList));
 }
 
 function placeorder()

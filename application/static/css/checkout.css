@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
 
 body{
-  background: url('http://all4desktop.com/data_images/original/4236532-background-images.jpg');
+  background-color: white;
   font-family: 'Roboto Condensed', sans-serif;
   color: #262626;
   margin: 5% 0;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
 }
 .container{
   width: 100%;
@@ -81,7 +85,8 @@ select{
   border: 1px solid #dadada;
 }
 table{
-  margin: 0;
+  margin-left: auto;  
+  margin-right: auto;  
   padding: 0;
 }
 th{
