@@ -15,6 +15,7 @@ sys.setrecursionlimit(1000000)
 
 @app.route('/confirm',methods=['GET','POST'])
 def confirm():
+    print("Here")
     return render_template("confirm.html")
 
 product_data = None
