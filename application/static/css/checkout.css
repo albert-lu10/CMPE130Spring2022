@@ -37,11 +37,11 @@ form{
   flex: 2;
 }
 .title{
-  background: -webkit-gradient(linear, left top, right bottom, color-stop(0, #5195A8), color-stop(100, #70EAFF));
-  background: -moz-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-  background: -ms-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-  background: -o-linear-gradient(top left, #5195A8 0%, #70EAFF 100%);
-  background: linear-gradient(to bottom right, #5195A8 0%, #70EAFF 100%);
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0, mediumaquamarine), color-stop(100, #70EAFF));
+  background: -moz-linear-gradient(top left, mediumaquamarine 0%, green  100%);
+  background: -ms-linear-gradient(top left, mediumaquamarine 0%, green 100%);
+  background: -o-linear-gradient(top left, mediumaquamarine 0%, green 100%);
+  background: linear-gradient(to bottom right, mediumaquamarine 0%, green 100%);
   border-radius:5px 5px 0 0 ;
   padding: 20px;
   color: #f6f6f6;
