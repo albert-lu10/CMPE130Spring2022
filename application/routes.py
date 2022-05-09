@@ -8,7 +8,7 @@ import time
 import random
 
 import sys
-
+import matplotlib.pyplot as plt
 
 
 sys.setrecursionlimit(1000000)
@@ -174,6 +174,22 @@ def insertionSortbyName():
 def insertionSortbyPrice():
     print("Do Insertion Sort")
 
+def hybridSortName(arr, l, r):
+    total_dataset_size = len(arr)
+    if total_dataset_size < 3000:
+        quickSortbyName(arr, l, r)
+    else:
+        mergeSortbyName(arr, l, r)
+
+def hybridSortPrice(arr, l, r):
+    total_dataset_size = len(arr)
+    if total_dataset_size < 3000:
+        quickSortbyPrice(arr, l, r)
+    elif total_dataset_size < 6000:
+        mergeSortbyPrice(arr, l, r)
+    else:
+        sorting.radixSortPrice(arr)
+
 @app.route("/reload", methods=['GET', 'POST'])
 def reload():
     filename = os.path.join(app.static_folder, 'data', 'products.json')
@@ -257,8 +273,160 @@ def sort():
             start = time.perf_counter_ns()
             sorted_data = sorting.radixSortPrice(data)
             end = time.perf_counter_ns()
+    elif sort_type == "hybridsort":
+        if sort_by == "name":
+            start = time.perf_counter_ns()
+            sorted_data = hybridSortName(data, 0, len(data) - 1)
+            end = time.perf_counter_ns()
+        elif sort_by == "price":
+            start = time.perf_counter_ns()
+            sorted_data = hybridSortPrice(data, 0, len(data) - 1)
+            end = time.perf_counter_ns()
     
     delta = (end - start)
 
     return {'data': sorted_data, 'time': delta}
     
+@app.route("/comparepage", methods=['GET', 'POST'])
+def comparepage():
+    return render_template("comparison.html")
+
+def plot(x, data):
+    sort_map = ["quicksort", "mergesort", "heapsort", "radixsort", "hybridsort"]
+    colors = ["r", "g", "b", "y", "m"]
+    for i in range(len(data)):
+        plt.plot(x, data[i][0], linestyle="-", linewidth=1.5, color=colors[i], label=sort_map[i].capitalize() + " by Name")
+        plt.plot(x, data[i][1], linestyle="--", linewidth=1, color=colors[i], label=sort_map[i].capitalize() + " by Price")
+    plt.legend(loc='upper left')
+    plt.xlabel("Dataset Size (# of products)")
+    plt.ylabel("Running Time (milliseconds)")
+    plt.title("Comparison of Various Sorting Algorithms")
+    plt.show()
+
+@app.route("/compare", methods=['GET', 'POST'])
+def compare():
+
+    print("Starting Comparisons...")
+
+    by_amount = [0.25, 0.5, 0.75, 1, 1.5, 2, 4, 8, 10, 25, 50, 75, 100, 250, 500]
+
+    all_sort_times = [
+        [[], []],
+        [[], []],
+        [[], []],
+        [[], []],
+        [[], []]
+    ]
+
+    dataset_amounts = []
+
+    for factor in range(len(by_amount)):
+        filename = os.path.join(app.static_folder, 'data', 'products.json')
+        global product_data
+        with open(filename) as file:
+            product_data = json.load(file)
+        non_duplicate_amount = len(product_data)
+
+        display_amount = round(non_duplicate_amount * float(by_amount[factor]))
+        dataset_amounts.append(display_amount)
+        curr_id = non_duplicate_amount + 1
+
+        new_data = []
+        
+        # Create the new dataset using the original dataset (either duplicate or take a fraction of)
+        for k in range(display_amount):
+            new_product = product_data[k % non_duplicate_amount].copy()
+            new_product['id'] = curr_id
+            curr_id += 1
+            new_data.append(new_product)
+
+        product_data = new_data
+
+        # Randomly shuffle dataset for fairness
+        random.shuffle(product_data)
+        
+        sort_map = ["quicksort", "mergesort", "heapsort", "radixsort", "hybridsort"]
+        sort_by_type_map = ["name", "price"]
+        num_trials = 10
+
+        # Run all sorting trials using the product dataset, do not modify, just deepcopy it.
+        for i in range(len(sort_map)):
+            for j in range(len(sort_by_type_map)):
+                trials = 0
+                for l in range(num_trials):
+                    data = deepcopy(product_data)
+                    
+                    sort_type = sort_map[i]
+                    sort_by = sort_by_type_map[j]
+
+                    start = 0
+                    end = 0
+
+                    if sort_type == "quicksort":
+                        if sort_by == "name":
+                            start = time.perf_counter_ns()
+                            sorted_data = quickSortbyName(data,0,len(data)-1)
+                            end = time.perf_counter_ns()
+                        elif sort_by == "price":
+                            start = time.perf_counter_ns()
+                            sorted_data = quickSortbyPrice(data,0,len(data)-1)
+                            end = time.perf_counter_ns()
+                    elif sort_type == "mergesort":
+                        if sort_by == "name":
+                            start = time.perf_counter_ns()
+                            sorted_data = mergeSortbyName(data, 0, len(data) -1)
+                            end = time.perf_counter_ns()
+                        elif sort_by == "price":
+                            start = time.perf_counter_ns()
+                            sorted_data = mergeSortbyPrice(data, 0, len(data) - 1)
+                            end = time.perf_counter_ns()
+                    elif sort_type == "insertionsort":
+                        if sort_by == "name":
+                            start = time.perf_counter_ns()
+                            sorted_data = insertionSortbyName(data, 'name')
+                            end = time.perf_counter_ns()
+                        elif sort_by == "price":
+                            start = time.perf_counter_ns()
+                            sorted_data = insertionSortbyPrice(data, 'price')
+                            end = time.perf_counter_ns()
+                    elif sort_type == "heapsort":
+                        if sort_by == "name":
+                            start = time.perf_counter_ns()
+                            sorted_data = sorting.heapSort(data, 'name')
+                            end = time.perf_counter_ns()
+                        elif sort_by == "price":
+                            start = time.perf_counter_ns()
+                            sorted_data = sorting.heapSort(data, 'price')
+                            end = time.perf_counter_ns()
+                    elif sort_type == "radixsort":
+                        if sort_by == "name":
+                            start = time.perf_counter_ns()
+                            sorted_data = sorting.radixSortString(data)
+                            end = time.perf_counter_ns()
+                        elif sort_by == "price":
+                            start = time.perf_counter_ns()
+                            sorted_data = sorting.radixSortPrice(data)
+                            end = time.perf_counter_ns()
+                    elif sort_type == "hybridsort":
+                        if sort_by == "name":
+                            start = time.perf_counter_ns()
+                            sorted_data = hybridSortName(data, 0, len(data) - 1)
+                            end = time.perf_counter_ns()
+                        elif sort_by == "price":
+                            start = time.perf_counter_ns()
+                            sorted_data = hybridSortPrice(data, 0, len(data) - 1)
+                            end = time.perf_counter_ns()
+                    
+                    delta = (end - start)
+                    trials += delta
+
+                # Convert to ms from ns
+                average_ms = (trials / num_trials) / 1000000
+                all_sort_times[i][j].append(average_ms)
+
+        # Debug
+        print("Dataset: ", by_amount[factor])
+
+    # Plot graph
+    plot(dataset_amounts, all_sort_times)
+    return {'data': None}
