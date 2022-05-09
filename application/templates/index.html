@@ -21,6 +21,7 @@
         <div class="top-content">
             <h2 class="text-center"> Grocery Store </h2>
 
+            <!-- Choose dataset input -->
             <form onsubmit="return false;" method="post" name="myForm">
                 <label for="dataset-selection">Choose dataset:</label>
                 <select id="dataset_type">
@@ -47,6 +48,8 @@
                 <input type="submit" value="Submit" onclick="reload();">
               </form>
 
+            
+            <!-- Choose type of sorting algorithm -->
             <form onsubmit="return false;" method="post" name="myForm">
                 <label for="sorting">Choose sorting algorithm:</label>
                 <select name="sort" id="sort-types">
@@ -55,6 +58,7 @@
                   <option value="2">Insertion sort</option>
                   <option value="3">Heapsort</option>
                   <option value="4">Radixsort</option>
+                  <option value="5">Custom Hybrid sort</option>
                 </select>
                 <select name="sort-by" id="sort-by">
                     <option value="0">Name</option>
@@ -62,7 +66,11 @@
                   </select>
                 <input type="submit" value="Submit" onclick="sort_data();">
               </form>
-              <div class="card" id="results_data" style="display:none; margin-top: 1%; margin-bottom: 1%;">
+              
+        </div>
+
+        <div class="top-content-2">
+            <div class="card" id="results_data" style="display:none; margin-top: 1%; margin-bottom: 1%;">
                 <div class="card-header">
                     Results
                 </div>
@@ -78,6 +86,7 @@
             <div id="pagination-container" class="text-center" style="margin-top: 1%; margin-bottom: 1%;"></div>
         </div>
         
+        <!-- Shopping Cart (Only shown when items are added to it)-->
         <div class="container" id="cart" hidden>
             <h3 class="text-center">Shopping Cart</h3>
             <table class="table table-hover">

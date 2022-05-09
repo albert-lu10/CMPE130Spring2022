@@ -1,10 +1,11 @@
 var itemList = [];
 
-var sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort", "radixsort"]
+var sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort", "radixsort", "hybridsort"]
 var sort_by_type_map = ["name", "price"]
 
 function generate_product_card(data, index)
 {
+    // Create the card of a product (display feature)
     return `
         <div class="col-md-4">
             <div class="card h-100">
@@ -24,6 +25,7 @@ function generate_product_card(data, index)
 var current_select = 'Default (1x)';
 
 function clearResults() {
+    // Clear the results box
     var dataset_loaded_element = document.getElementById('dataset_loaded');
     dataset_loaded_element.innerHTML = "";
 
