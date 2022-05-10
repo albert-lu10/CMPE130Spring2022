@@ -1,6 +1,7 @@
 CMPE 130 Spring 2022 Project
 
 Professor: Gheorghi Guzun
+
 Names: Albert Lu, Eric Cheng, Nhat Tuan Nguyen, Thi Tran
 
 In this project, we built a website using Flask for the backend and HTML, CSS, and JS for the frontend. This website displays grocery products that can be sorted by name and price. Adding items to the cart is possible and there is also an ability to checkout the items.
