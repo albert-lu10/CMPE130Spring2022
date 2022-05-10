@@ -177,18 +177,18 @@ def insertionSortbyPrice():
 def hybridSortName(arr, l, r):
     total_dataset_size = len(arr)
     if total_dataset_size < 3000:
-        quickSortbyName(arr, l, r)
+        return quickSortbyName(arr, l, r)
     else:
-        mergeSortbyName(arr, l, r)
+        return mergeSortbyName(arr, l, r)
 
 def hybridSortPrice(arr, l, r):
     total_dataset_size = len(arr)
     if total_dataset_size < 3000:
-        quickSortbyPrice(arr, l, r)
+        return quickSortbyPrice(arr, l, r)
     elif total_dataset_size < 6000:
-        mergeSortbyPrice(arr, l, r)
+        return mergeSortbyPrice(arr, l, r)
     else:
-        sorting.radixSortPrice(arr)
+        return sorting.radixSortPrice(arr)
 
 @app.route("/reload", methods=['GET', 'POST'])
 def reload():
