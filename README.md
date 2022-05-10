@@ -5,6 +5,7 @@ In this project, we built a website using Flask for the backend and HTML, CSS, a
 Options to control what dataset to use and what to sort by are given. This helped to compare the algorithms. Creation of a custom hybrid sorting algorithm is also finished.
 
 To Run:
-1. Clone repository.
-2. Install prerequisites.
-3. Run the Flask app using "set FLASK_APP=main" followed by "flask run".
+1. Make sure to install Python.
+2. Clone repository.
+3. Install prerequisites.
+4. Run the Flask app using "set FLASK_APP=main" followed by "flask run".
