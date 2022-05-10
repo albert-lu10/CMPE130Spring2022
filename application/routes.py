@@ -171,21 +171,21 @@ def mergeSortbyPrice(arr, l, r):
 def insertionSortbyName(arr, sort_by):
     for i in range(1, len(arr)):
         key = arr[i]
-    j = i-1
-    while j >= 0 and key['name'] < arr[j]['name'] :
-        arr[j + 1] = arr[j]
-        j -= 1
-    arr[j + 1] = key
+        j = i-1
+        while j >= 0 and key['name'] < arr[j]['name'] :
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
     return arr
 
 def insertionSortbyPrice(arr, sort_by):
     for i in range(1, len(arr)):
         key = arr[i]
-    j = i-1
-    while j >= 0 and key['price'] < arr[j]['price'] :
-        arr[j + 1] = arr[j]
-        j -= 1
-    arr[j + 1] = key
+        j = i-1
+        while j >= 0 and key['price'] < arr[j]['price'] :
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
     return arr
 
 def hybridSortName(arr, l, r):
