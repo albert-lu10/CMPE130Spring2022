@@ -306,8 +306,20 @@ def comparepage():
     return render_template("comparison.html")
 
 def plot(x, data):
-    sort_map = ["insertionsort", "quicksort", "mergesort", "heapsort", "radixsort", "hybridsort"]
-    colors = ["c", "r", "g", "b", "y", "m"]
+    sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort", "radixsort", "hybridsort"]
+    colors = ["r", "g", "c", "b", "y", "m"]
+    for i in range(len(data)):
+        plt.plot(x, data[i][0], linestyle="-", linewidth=1.5, color=colors[i], label=sort_map[i].capitalize() + " by Name")
+        plt.plot(x, data[i][1], linestyle="--", linewidth=1, color=colors[i], label=sort_map[i].capitalize() + " by Price")
+    plt.legend(loc='upper left')
+    plt.xlabel("Dataset Size (# of products)")
+    plt.ylabel("Running Time (milliseconds)")
+    plt.title("Comparison of Various Sorting Algorithms")
+    plt.show()
+
+def plotLarge(x, data):
+    sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort", "radixsort", "hybridsort"]
+    colors = ["r", "g", "c", "b", "y", "m"]
     for i in range(len(data)):
         plt.plot(x, data[i][0], linestyle="-", linewidth=1.5, color=colors[i], label=sort_map[i].capitalize() + " by Name")
         plt.plot(x, data[i][1], linestyle="--", linewidth=1, color=colors[i], label=sort_map[i].capitalize() + " by Price")
@@ -322,9 +334,13 @@ def compare():
 
     print("Starting Comparisons...")
 
-    by_amount = [0.25, 0.5, 0.75, 1, 1.5, 2, 4, 8, 10, 25, 50, 75, 100, 250, 500]
+
+    by_amount = [0.25, 0.5, 0.75, 1, 1.5, 2, 4, 8, 10, 25] # Used for the small datasets, include 50 (takes longer)
+    #by_amount = [0.25, 0.5, 0.75, 1, 1.5, 2, 4, 8, 10, 25, 50, 75, 100, 250, 500] # use for large dataset
+    #by_amount = [0.25, 0.5, 0.75, 1] # use for non-duplicate data
 
     all_sort_times = [
+        [[], []],
         [[], []],
         [[], []],
         [[], []],
@@ -359,7 +375,7 @@ def compare():
         # Randomly shuffle dataset for fairness
         random.shuffle(product_data)
 
-        sort_map = ["quicksort", "mergesort", "heapsort", "radixsort", "hybridsort"]
+        sort_map = ["quicksort", "mergesort", "insertionsort", "heapsort", "radixsort", "hybridsort"]
         sort_by_type_map = ["name", "price"]
         num_trials = 10
 
