@@ -33,48 +33,48 @@ def index():
     return render_template("index.html", data=product_data)
 
 def partition1(a, low, high):
-    i = (low-1) 
+    i = (low-1)
     item=a[high]
     pivot = item["name"]
     for j in range(low, high):
         item2=a[j]
-        
+
         if item2["name"] <= pivot:
-            
+
             i = i+1
             a[i], a[j] = a[j], a[i]
     a[i+1], a[high] = a[high], a[i+1]
     return (i+1)
 
 def quickSortbyName(a, low, high):
-    if len(a) == 1: 
+    if len(a) == 1:
         return a
     if low < high:
-    
+
         p = partition1(a, low, high)
         quickSortbyName(a, low, p-1)
         quickSortbyName(a, p+1, high)
     return (a)
 
 def partition2(a, low, high):
-    i = (low-1) 
+    i = (low-1)
     item=a[high]
     pivot = item["price"]
     for j in range(low, high):
         item2=a[j]
-        
+
         if item2["price"] <= pivot:
-            
+
             i = i+1
             a[i], a[j] = a[j], a[i]
     a[i+1], a[high] = a[high], a[i+1]
     return (i+1)
 
 def quickSortbyPrice(a, low, high):
-    if len(a) == 1: 
+    if len(a) == 1:
         return a
     if low < high:
-    
+
         p = partition2(a, low, high)
         quickSortbyPrice(a, low, p-1)
         quickSortbyPrice(a, p+1, high)
@@ -89,13 +89,13 @@ def merge1(arr, l, m, r):
 
     for i in range(0, n1):
         L[i] = arr[l + i]
-    
+
     for j in range(0, n2):
         R[j] = arr[m + 1 + j]
 
-    i = 0     
-    j = 0     
-    k = l     
+    i = 0
+    j = 0
+    k = l
 
     while i < n1 and j < n2:
         if L[i]["name"] <= R[j]["name"]:
@@ -105,12 +105,12 @@ def merge1(arr, l, m, r):
             arr[k] = R[j]
             j += 1
         k += 1
- 
+
     while i < n1:
         arr[k] = L[i]
         i += 1
         k += 1
- 
+
     while j < n2:
         arr[k] = R[j]
         j += 1
@@ -133,13 +133,13 @@ def merge2(arr, l, m, r):
 
     for i in range(0, n1):
         L[i] = arr[l + i]
-    
+
     for j in range(0, n2):
         R[j] = arr[m + 1 + j]
 
-    i = 0     
-    j = 0     
-    k = l     
+    i = 0
+    j = 0
+    k = l
 
     while i < n1 and j < n2:
         if L[i]["price"] <= R[j]["price"]:
@@ -149,12 +149,12 @@ def merge2(arr, l, m, r):
             arr[k] = R[j]
             j += 1
         k += 1
- 
+
     while i < n1:
         arr[k] = L[i]
         i += 1
         k += 1
- 
+
     while j < n2:
         arr[k] = R[j]
         j += 1
@@ -167,12 +167,26 @@ def mergeSortbyPrice(arr, l, r):
         mergeSortbyPrice(arr, m+1, r)
         merge2(arr, l, m, r)
     return arr
-    
-def insertionSortbyName():
-    print("Do Insertion Sort")
 
-def insertionSortbyPrice():
-    print("Do Insertion Sort")
+def insertionSortbyName(arr, sort_by):
+    for i in range(1, len(arr)):
+        key = arr[i]
+    j = i-1
+    while j >= 0 and key['name'] < arr[j]['name'] :
+        arr[j + 1] = arr[j]
+        j -= 1
+    arr[j + 1] = key
+    return arr
+
+def insertionSortbyPrice(arr, sort_by):
+    for i in range(1, len(arr)):
+        key = arr[i]
+    j = i-1
+    while j >= 0 and key['price'] < arr[j]['price'] :
+        arr[j + 1] = arr[j]
+        j -= 1
+    arr[j + 1] = key
+    return arr
 
 def hybridSortName(arr, l, r):
     total_dataset_size = len(arr)
@@ -197,13 +211,13 @@ def reload():
     with open(filename) as file:
         product_data = json.load(file)
 
-    non_duplicate_amount = len(product_data)    
+    non_duplicate_amount = len(product_data)
 
     display_amount = round(non_duplicate_amount * float(request.args.get('by')))
     curr_id = non_duplicate_amount + 1
 
     new_data = []
-    
+
     for i in range(display_amount):
         new_product = product_data[i % non_duplicate_amount].copy()
         new_product['id'] = curr_id
@@ -219,7 +233,7 @@ def reload():
 def sort():
     global product_data
     data = deepcopy(product_data)
-    
+
     sort_type = request.args.get('type')
     sort_by = request.args.get('by')
 
@@ -282,18 +296,18 @@ def sort():
             start = time.perf_counter_ns()
             sorted_data = hybridSortPrice(data, 0, len(data) - 1)
             end = time.perf_counter_ns()
-    
+
     delta = (end - start)
 
     return {'data': sorted_data, 'time': delta}
-    
+
 @app.route("/comparepage", methods=['GET', 'POST'])
 def comparepage():
     return render_template("comparison.html")
 
 def plot(x, data):
-    sort_map = ["quicksort", "mergesort", "heapsort", "radixsort", "hybridsort"]
-    colors = ["r", "g", "b", "y", "m"]
+    sort_map = ["insertionsort", "quicksort", "mergesort", "heapsort", "radixsort", "hybridsort"]
+    colors = ["c", "r", "g", "b", "y", "m"]
     for i in range(len(data)):
         plt.plot(x, data[i][0], linestyle="-", linewidth=1.5, color=colors[i], label=sort_map[i].capitalize() + " by Name")
         plt.plot(x, data[i][1], linestyle="--", linewidth=1, color=colors[i], label=sort_map[i].capitalize() + " by Price")
@@ -332,7 +346,7 @@ def compare():
         curr_id = non_duplicate_amount + 1
 
         new_data = []
-        
+
         # Create the new dataset using the original dataset (either duplicate or take a fraction of)
         for k in range(display_amount):
             new_product = product_data[k % non_duplicate_amount].copy()
@@ -344,7 +358,7 @@ def compare():
 
         # Randomly shuffle dataset for fairness
         random.shuffle(product_data)
-        
+
         sort_map = ["quicksort", "mergesort", "heapsort", "radixsort", "hybridsort"]
         sort_by_type_map = ["name", "price"]
         num_trials = 10
@@ -355,7 +369,7 @@ def compare():
                 trials = 0
                 for l in range(num_trials):
                     data = deepcopy(product_data)
-                    
+
                     sort_type = sort_map[i]
                     sort_by = sort_by_type_map[j]
 
@@ -416,7 +430,7 @@ def compare():
                             start = time.perf_counter_ns()
                             sorted_data = hybridSortPrice(data, 0, len(data) - 1)
                             end = time.perf_counter_ns()
-                    
+
                     delta = (end - start)
                     trials += delta
 
